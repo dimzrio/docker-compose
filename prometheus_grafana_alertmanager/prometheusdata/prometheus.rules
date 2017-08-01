@@ -6,7 +6,44 @@ ALERT host_down
  FOR 30s
  LABELS { severity = "critical" }
  ANNOTATIONS {
-      summary = "Monitor server production",
+      summary = "Monitoring host production",
       description = "{{ $labels.job }} is down.",
   }
 
+######################
+# Alert - Disk Usage #
+#################### #
+ALERT disk_usage_warning
+ IF ((node_filesystem_size{fstype="ext4",mountpoint="/"} - node_filesystem_avail{fstype="ext4",mountpoint="/"} ) / (node_filesystem_size{fstype="ext4",mountpoint="/"})) * 100 >= 65
+ FOR 1m
+ LABELS { severity = "critical" }
+ ANNOTATIONS {
+      summary = "Server storage is almost full",
+      description = "Disk usage on {{ $labels.job }} is {{ humanize $value }}%. Reported by instance {{ $labels.instance }}.",
+  }
+
+
+####################
+# Alert - CPU Load #
+####################
+ALERT high_cpu_load
+ IF 100 * (1 - avg by(instance)(irate(node_cpu{mode='idle'}[1m]))) >= 65
+ FOR 1m
+ LABELS { severity = "critical" }
+ ANNOTATIONS {
+      summary = "Server under high load",
+      description = "High CPU Load on {{ $labels.job }} is {{ humanize $value }}. Reported by instance {{ $labels.instance }}.",
+  }
+
+
+#######################
+# Alert - Memory Load #
+#######################
+ALERT high_memory_load
+ IF (((node_memory_MemTotal{} - node_memory_MemFree{} ) / (node_memory_MemTotal{}) )* 100) >= 90
+ FOR 1m
+ LABELS { severity = "critical" }
+ ANNOTATIONS {
+      summary = "Server under high memory load",
+      description = "High Memory Load on {{ $labels.job }} is {{ humanize $value}}%. Reported by instance {{ $labels.instance }}",
+  }
