@@ -1,0 +1,12 @@
+###########################
+# Alert - Monitoring Host #
+###########################
+ALERT host_down
+ IF up{} == 0
+ FOR 30s
+ LABELS { severity = "critical" }
+ ANNOTATIONS {
+      summary = "Monitor server production",
+      description = "{{ $labels.job }} is down.",
+  }
+

@@ -1,0 +1,22 @@
+global:
+  smtp_smarthost: 'smtp.office365.com:587'
+  smtp_from: 'xxx@xxxx.com'
+  smtp_auth_username: 'xxx@xxxx.com'
+  smtp_auth_password: 'xxxxxx'
+
+route:
+  group_by: ['notif']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h 
+  receiver: devops
+
+  routes:
+    - match:
+        severity: critical
+      receiver: devops
+
+receivers:
+- name: 'devops'
+  email_configs:
+  - to: 'destination@xxxxx.com'

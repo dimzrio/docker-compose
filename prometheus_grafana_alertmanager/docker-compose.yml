@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+  alertmanager:
+      container_name: alertmanager
+      image: prom/alertmanager
+      restart: always
+      ports:
+          - "9093:9093"
+      volumes:
+          - ./alertmanagerdata:/etc/alertmanager:rw
+
+  grafana:
+      container_name: grafana
+      restart: always
+      image: grafana/grafana
+      ports:
+          - "3000:3000"
+      environment:
+          - GF_INSTALL_PLUGINS=grafana-piechart-panel,jdbranham-diagram-panel
+
+  prometheus:
+      container_name: prometheus
+      image: prom/prometheus
+      links:
+       - alertmanager
+      command: -config.file=/etc/prometheus/prometheus.yml -alertmanager.url=http://alertmanager:9093
+      restart: always
+      ports:
+          - "9090:9090"
+      volumes:
+          - ./prometheusdata:/etc/prometheus:rw
+          - ./prometheusdb:/prometheus/data:rw
+

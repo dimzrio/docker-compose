@@ -1,0 +1,25 @@
+global:
+  scrape_interval:     15s 
+  evaluation_interval: 15s 
+  external_labels:
+    monitor: 'codelab-monitor'
+
+rule_files:
+  - 'prometheus.rules'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+
+#################
+# Node Exporter #
+#################
+
+#  - job_name:       'hostname'
+#    scrape_interval: 5s
+#    static_configs:
+#      - targets: ['xxx.xxx.xxx.xxx:9100']
+#        labels:
+#          group: 'node_exporter'
