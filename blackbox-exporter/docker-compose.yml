@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  blackbox-exporter:
+      container_name: blackbox-exporter
+      restart: always
+      image: prom/blackbox-exporter:v.1.0.0
+      ports:
+          - "9115:9115"
+      volumes:
+          - ./blackboxdata/config:/config
+      command: -config.file=/config/blackbox.yml

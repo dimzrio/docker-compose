@@ -24,3 +24,19 @@ $ cd cadvisor
 
 $ docker-compose up -d
 
+<h3> Blackbox Exporter </h3>
+
+Docker compose script for monitoring services  HTTP,HTTPS,DNS,TCP and ICMP using [Blackbox](https://github.com/prometheus/blackbox_exporter).
+
+<h6> Installation</h6>
+
+$ git clone https://github.com/dimzrio/docker-compose.git
+
+$ cd blackbox-exporter/blackboxdata
+
+$ docker build -t prom/blackbox-exporter:v.1.0.0 .
+
+$ cd ..
+
+$ docker-compose up -d
+

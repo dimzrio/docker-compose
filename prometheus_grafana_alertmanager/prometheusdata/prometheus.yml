@@ -23,3 +23,43 @@ scrape_configs:
 #      - targets: ['xxx.xxx.xxx.xxx:9100']
 #        labels:
 #          group: 'node_exporter'
+
+#####################
+# Cadvisor Exporter #
+#####################
+
+#  - job_name:   'hostname'
+#    scrape_interval: 10s
+#    metrics_path: '/metrics'
+#    static_configs:
+#      - targets: ['xxx.xxx.xxx.xxx:9911']
+#        labels:
+#          group: 'cAdvisor'
+
+#####################
+# Blackbox Exporter #
+#####################
+
+#  - job_name:       'hostname'
+#    scrape_interval: 60s
+#    scheme: 'http'
+#    metrics_path: '/probe'
+#    params:
+#      module: ['http_post']
+#      target: ['http://xxx.xxx.xxx.xxx:8080/API']
+#    static_configs:
+#      - targets: ['blackbox-exporter:9115']
+#        labels:
+#          group: 'blackbox_exporter'
+
+####################
+# HAProxy Exporter #
+####################
+
+#  - job_name:   'hostname'
+#    scrape_interval: 5s
+#    static_configs:
+#      - targets: ['xxx.xxx.xxx.xxx:9101']
+#        labels:
+#          group: 'haproxy-exporter'
+
