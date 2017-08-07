@@ -1,0 +1,15 @@
+version: '2'
+services: 
+    cadvisor:
+        image: google/cadvisor 
+        container_name: cadvisor
+        volumes:
+           - /:/rootfs:ro
+           - /var/run:/var/run:rw
+           - /sys:/sys:ro
+           - /var/lib/docker/:/var/lib/docker:ro
+           - /cgroup:/cgroup:ro
+        ports:
+           - 9911:8080
+        privileged: true
+        restart: always
