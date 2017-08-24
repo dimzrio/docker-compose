@@ -1,10 +1,10 @@
-version: '2'
+version: "3"
 
 services:
 
   alertmanager:
       container_name: alertmanager
-      image: prom/alertmanager
+      image: prom/alertmanager:v0.8.0
       restart: always
       ports:
           - "9093:9093"
@@ -14,7 +14,7 @@ services:
   grafana:
       container_name: grafana
       restart: always
-      image: grafana/grafana
+      image: grafana/grafana:4.4.3
       ports:
           - "3000:3000"
       environment:
@@ -22,10 +22,14 @@ services:
 
   prometheus:
       container_name: prometheus
-      image: prom/prometheus
+      image: prom/prometheus:v1.7.1
       links:
        - alertmanager
-      command: -config.file=/etc/prometheus/prometheus.yml -alertmanager.url=http://alertmanager:9093
+      command: 
+       - '-config.file=/etc/prometheus/prometheus.yml'
+       - '-web.external-url=http://<ip-external-prometheus>:9090/' 
+       - '-web.route-prefix=/' 
+       - '-alertmanager.url=http://alertmanager:9093'
       restart: always
       ports:
           - "9090:9090"

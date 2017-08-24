@@ -8,6 +8,7 @@ ALERT host_down
  ANNOTATIONS {
       summary = "Monitoring host production",
       description = "{{ $labels.job }} is down.",
+      runbook = "https://prometheus.io/docs/alerting/configuration/",
   }
 
 ######################
@@ -20,6 +21,7 @@ ALERT disk_usage_warning
  ANNOTATIONS {
       summary = "Server storage is almost full",
       description = "Disk usage on {{ $labels.job }} is {{ humanize $value }}%. Reported by instance {{ $labels.instance }}.",
+      runbook = "https://prometheus.io/docs/alerting/configuration/",
   }
 
 
@@ -33,6 +35,7 @@ ALERT high_cpu_load
  ANNOTATIONS {
       summary = "Server under high load",
       description = "High CPU Load on {{ $labels.job }} is {{ humanize $value }}. Reported by instance {{ $labels.instance }}.",
+      runbook = "https://prometheus.io/docs/alerting/configuration/",
   }
 
 
@@ -46,4 +49,5 @@ ALERT high_memory_load
  ANNOTATIONS {
       summary = "Server under high memory load",
       description = "High Memory Load on {{ $labels.job }} is {{ humanize $value}}%. Reported by instance {{ $labels.instance }}",
+      runbook = "https://prometheus.io/docs/alerting/configuration/",
   }
