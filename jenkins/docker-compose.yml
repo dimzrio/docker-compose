@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+    
+  jenkins:
+     container_name: jenkins
+     image: jenkins:2.60.2
+     restart: always
+     ports:
+       - "8080:8080"
+       - "50000:50000"
+     user: root
+     privileged: true
+     environment:
+       - JAVA_OPTS="-Duser.timezone=Asia/Jakarta"
+     volumes:
+       - /docker/jenkins/jenkins_home:/var/jenkins_home
+       - /etc/localtime:/etc/localtime
