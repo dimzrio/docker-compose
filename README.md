@@ -24,3 +24,6 @@ $ cd ..
 
 $ docker-compose up -d
 
+<h3> Jenkins </h3>
+
+Docker compose script for setup [Jenkins](https://jenkins.io) using docker.
