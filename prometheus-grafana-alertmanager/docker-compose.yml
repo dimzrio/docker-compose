@@ -27,7 +27,7 @@ services:
        - alertmanager
       command: 
        - '-config.file=/etc/prometheus/prometheus.yml'
-       - '-web.external-url=http://<ip-external-prometheus>:9090/' 
+       - '-web.external-url=http://prometheus:9090/' 
        - '-web.route-prefix=/' 
        - '-alertmanager.url=http://alertmanager:9093'
       restart: always
