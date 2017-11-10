@@ -1,7 +1,6 @@
 version: '2'
 
 services:
-
   blackbox-exporter:
       container_name: blackbox-exporter
       restart: always
