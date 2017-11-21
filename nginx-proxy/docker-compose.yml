@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    
+  http:
+     container_name: webservice
+     image: nginx:alpine
+     restart: always
+     ports:
+       - "80:80"
+       - "443:443"
+     volumes:
+       - /docker/nginx/conf.d:/etc/nginx/conf.d
+       - /docker/nginx/ssl:/etc/nginx/ssl
+       - /etc/localtime:/etc/localtime
