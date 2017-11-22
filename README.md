@@ -27,3 +27,11 @@ $ docker-compose up -d
 <h3> Jenkins </h3>
 
 Docker compose script for setup [Jenkins](https://jenkins.io) using docker.
+
+<h3> Nginx-proxy </h3>
+
+Docker compose script for setup domain monitoring tools using [Nginx](https://nginx.com) docker.
+
+<h3> Nginx-php-fpm </h3>
+
+Docker compose script for setup webserver using [Nginx](https://nginx.com) and [PHP](https://php-fpm.org/) docker.
