@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+    web:
+        build:
+            context: ./nginx/
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+            - ./vhosts/:/etc/nginx/conf.d/
+        restart: always
+    
+    rpc:
+        build:
+            context: ./grpc/
+            network: host
+        ports: 
+            - "50051:50051"
+        restart: always
+    
