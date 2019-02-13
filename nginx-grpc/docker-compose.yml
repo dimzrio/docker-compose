@@ -9,7 +9,7 @@ services:
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./nginx/vhosts/:/etc/nginx/conf.d/
-            - ./nginx/ssl/:/etc/nginx/ssl
+            - ./nginx/ssl/:/etc/nginx/ssl/
         restart: always
     
     rpc:
