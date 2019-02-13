@@ -7,8 +7,9 @@ services:
         ports:
             - "8080:8080"
         volumes:
-            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./nginx/vhosts/:/etc/nginx/conf.d/:ro
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/vhosts/:/etc/nginx/conf.d/
+            - ./nginx/ssl/:/etc/nginx/ssl
         restart: always
     
     rpc:
