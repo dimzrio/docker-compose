@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+    web:
+        image: nginx:alpine
+        ports:
+            - "8080:80"
+        volumes:
+            - ./public_html:/public_html
+            - ./conf/nginx.conf:/etc/nginx/nginx.conf
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+        sysctls:
+            net.core.somaxconn: 65536
+            net.ipv4.ip_local_port_range: 1024 65535
+            net.ipv4.tcp_fin_timeout: 1
+
+
