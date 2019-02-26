@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+    mongodb:
+        build:
+          context: .
+        ports:
+          - "27017:27017"
+        command: [--auth]
+        volumes:
+          - ./data:/data/db
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=admin
+          - MONGO_INITDB_ROOT_PASSWORD=detikc0m
+        restart: always
