@@ -1,1 +1,4 @@
-/data/*
+/basic/data/*
+/replicaset/db01/*
+/replicaset/db02/*
+/replicaset/db03/*

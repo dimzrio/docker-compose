@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+    primary:
+      build:
+        context: .
+      ports:
+        - "30001:27017"
+      command: ["--auth","--config", "/data/configdb/mongod.conf"]
+      volumes:
+        - ./config/mongod.conf:/data/configdb/mongod.conf
+        - ./db01:/data/db
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=detikc0m
+      restart: always
+    
+    secondary:
+      build:
+        context: .
+      depends_on:
+        - primary
+      ports:
+        - "30002:27017"
+      command: [--auth,"--config", "/data/configdb/mongod.conf"]
+      volumes:
+        - ./config/mongod.conf:/data/configdb/mongod.conf
+        - ./db02:/data/db
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=detikc0m
+      restart: always
+
+    arbiter:
+      build:
+        context: .
+      depends_on:
+        - primary
+        - secondary
+      ports:
+        - "30003:27017"
+      command: [--auth,"--config", "/data/configdb/mongod.conf"]
+      volumes:
+        - ./config/mongod.conf:/data/configdb/mongod.conf
+        - ./db03:/data/db
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=detikc0m
+      restart: always
