@@ -10,13 +10,13 @@ services:
       ports:
         - "30001:27017"
       command: ["--bind_ip", "192.168.7.101", "--logpath", "/data/logs/mongod.log", "--replSet", "grpc"]
-      # environment:
-      #   - MONGO_INITDB_ROOT_USERNAME=admin
-      #   - MONGO_INITDB_ROOT_PASSWORD=admin123
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=admin123
       volumes:
         - ./script/create_user.js:/create_user.js
         - ./script/replicaset.js:/replicaset.js
-        - ./hosts/hosts:/etc/hosts
+        #- ./hosts/hosts:/etc/hosts
         - ./db01:/data/db
       restart: always
     
@@ -32,7 +32,7 @@ services:
         - "30002:27017"
       command: ["--bind_ip", "192.168.7.102", "--logpath", "/data/logs/mongod.log", "--replSet", "grpc"]
       volumes:
-        - ./hosts/hosts:/etc/hosts
+        #- ./hosts/hosts:/etc/hosts
         - ./db02:/data/db
       restart: always
     
@@ -48,7 +48,7 @@ services:
         - "30003:27017"
       command: ["--bind_ip", "192.168.7.103", "--logpath", "/data/logs/mongod.log", "--replSet", "grpc"]
       volumes:
-        - ./hosts/hosts:/etc/hosts
+        #- ./hosts/hosts:/etc/hosts
         - ./db03:/data/db
       restart: always
 

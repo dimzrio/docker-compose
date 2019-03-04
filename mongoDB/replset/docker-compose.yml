@@ -1,0 +1,65 @@
+version: '3.4'
+
+services:
+    mongo_01:
+      build:
+        context: .
+      hostname: mongo_01
+      extra_hosts:
+        - "mongo_02:$IP_MONGO_02"
+        - "mongo_03:$IP_MONGO_03"
+      networks:
+        static-network:
+          ipv4_address: $IP_MONGO_01
+      ports:
+        - "30001:27017"
+      command: --bind_ip $IP_MONGO_01 --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
+      volumes:
+        #- ./script/:/script/
+        - ./script/replicaset.js:/docker-entrypoint-initdb.d/replicaset.js
+        - ./db01:/data/db
+      restart: always
+      depends_on:
+        - mongo_02
+        - mongo_03
+    
+    mongo_02:
+      build:
+        context: .
+      hostname: mongo_02
+      extra_hosts:
+        - "mongo_01:$IP_MONGO_01"
+        - "mongo_03:$IP_MONGO_03"
+      networks:
+        static-network:
+          ipv4_address: $IP_MONGO_02
+      ports:
+        - "30002:27017"
+      command: --bind_ip $IP_MONGO_02 --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
+      volumes:
+        - ./db02:/data/db
+      restart: always
+    
+    mongo_03:
+      build:
+        context: .
+      hostname: mongo_03
+      extra_hosts:
+        - "mongo_01:$IP_MONGO_01"
+        - "mongo_02:$IP_MONGO_02"
+      networks:
+        static-network:
+          ipv4_address: $IP_MONGO_03
+      ports:
+        - "30003:27017"
+      command: --bind_ip $IP_MONGO_03 --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
+      volumes:
+        - ./db03:/data/db
+      restart: always
+
+networks:
+  static-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: $IP_SEGMENT
