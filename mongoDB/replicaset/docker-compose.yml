@@ -32,7 +32,6 @@ services:
         - "30002:27017"
       command: ["--bind_ip", "192.168.7.102", "--logpath", "/data/logs/mongod.log", "--replSet", "grpc"]
       volumes:
-        #- ./config/mongod.conf:/data/configdb/mongod.conf
         - ./hosts/hosts:/etc/hosts
         - ./db02:/data/db
       restart: always
@@ -47,10 +46,8 @@ services:
         - primary
       ports:
         - "30003:27017"
-      #command: ["--config", "/data/configdb/mongod.conf"]
       command: ["--bind_ip", "192.168.7.103", "--logpath", "/data/logs/mongod.log", "--replSet", "grpc"]
       volumes:
-        #- ./config/mongod.conf:/data/configdb/mongod.conf
         - ./hosts/hosts:/etc/hosts
         - ./db03:/data/db
       restart: always
