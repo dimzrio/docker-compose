@@ -1,23 +1,13 @@
-// Create db
-db = db.getSiblingDB('admin')
-// // Create user for replica set
-//db.createUser(
-//     {
-//       user: "admin",
-//       pwd: "admin123",
-//       roles: [
-//          { role: "userAdminAnyDatabase", db: "admin" }
-//       ]
-//     }
-// );
+// Get db
+db = db.getSiblingDB($ACCESS_DB)
 
 // // Create user
 db.createUser(
     {
-      user: "dimzrio",
-      pwd: "dimzrio123",
+      user: $CREATE_USER,
+      pwd: $CREATE_PASSWD,
       roles: [
-         { role: "root", db: "admin" }
+         { role: "root", db: $ACCESS_DB }
       ]
     }
 );
