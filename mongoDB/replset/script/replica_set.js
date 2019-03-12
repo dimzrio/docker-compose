@@ -1,6 +1,25 @@
-require('dotenv').config();
-var ip_mongo_2 = process.env.IP_MONGO_02
-var ip_mongo_3 = process.env.IP_MONGO_03
 rs.initiate()
-rs.add(ip_mongo_2+":27017")
-rs.add(ip_mongo_3+":27017")
+rs.add(IP_MONGO_02+":27017")
+rs.add(IP_MONGO_03+":27017")
+
+// config = {
+//     "_id" : REPLICASET_NAME,
+//     "members" : [
+//         {
+//             "_id" : 0,
+//             "host" : IP_MONGO_01+":27017",
+//             "priority" : 1
+//         },
+//         {
+//             "_id" : 1,
+//             "host" : IP_MONGO_02+":27017",
+//             "priority" : 2
+//         },
+//         {
+//             "_id" : 2,
+//             "host" : IP_MONGO_03+":27017",
+//             "priority" : 2
+//         }
+//     ]
+// }
+// rs.reconfig(config)
