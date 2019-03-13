@@ -1,0 +1,51 @@
+version: '3.4'
+
+services:
+  primary:
+    build:
+      context: .
+    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
+    ports:
+      - "30001:27017"
+    env_file:
+      - .env
+    volumes:
+      - ./primary_db:/data/db
+    restart: always
+  
+  secondary_01:
+    build:
+      context: .
+    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
+    ports:
+      - "30002:27017"
+    env_file:
+      - .env
+    volumes:
+      - ./secondary_01_db:/data/db
+    restart: always
+
+  secondary_02:
+    build:
+      context: .
+    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
+    ports:
+      - "30003:27017"
+    env_file:
+      - .env
+    volumes:
+      - ./secondary_02_db:/data/db
+    restart: always
+
+  setup:
+    build:
+      context: .
+    depends_on:
+      - primary
+      - secondary_01
+      - secondary_02
+        env_file:
+      - .env
+    volumes:
+      - ./
+
