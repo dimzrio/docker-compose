@@ -2,10 +2,10 @@
 
 sleep 10
 
-mongo --host cluster0-0 <<EOF
+mongo -u $ROOT_USER -p $ROOT_PASSWD --host primary <<EOF
 rs.initiate(
   {
-    _id : "cluster0",
+    _id : "$REPLICASET_NAME",
     members: [
       { _id : 0, host : "primary:27017" },
       { _id : 1, host : "secondary_01:27017" },
@@ -14,5 +14,3 @@ rs.initiate(
   }
 )
 EOF
-
-echo "mongo mongodb://localhost:27017,localhost:27018,localhost:27019/test"
