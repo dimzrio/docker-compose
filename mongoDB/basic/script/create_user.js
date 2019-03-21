@@ -1,13 +1,13 @@
 // Get db
 db = db.getSiblingDB("admin")
 
-// // Create user
+// Create read & write user
 db.createUser(
     {
-      user: "dimzrio",
-      pwd: "dimzrio123",
+      user: USER,
+      pwd: USER_PASSWD,
       roles: [
-         { role: "dbOwner", db: "admin" }
+         { role: "readWrite", db: "admin" }
       ]
     }
 );

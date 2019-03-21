@@ -1,0 +1,1 @@
+mongo -u $ROOT_USER -p $ROOT_PASSWD --eval "var USER = '$USER'; var USER_PASSWD = '$USER_PASSWD';" /script/create_user.js
