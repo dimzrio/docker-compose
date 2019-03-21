@@ -4,12 +4,12 @@ services:
   primary:
     build:
       context: ./build/
-    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME --auth --keyFile /data/
+    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
     ports:
-      - "30001:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$ROOT_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$ROOT_PASSWD
+      - "127.0.0.1:30001:27017"
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=$ROOT_USER
+    #   - MONGO_INITDB_ROOT_PASSWORD=$ROOT_PASSWD
     env_file:
       - .env
     volumes:
@@ -19,12 +19,12 @@ services:
   secondary_01:
     build:
       context: ./build/
-    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME --auth
+    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
     ports:
-      - "30002:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$ROOT_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$ROOT_PASSWD
+      - "127.0.0.1:30002:27017"
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=$ROOT_USER
+    #   - MONGO_INITDB_ROOT_PASSWORD=$ROOT_PASSWD
     env_file:
       - .env
     volumes:
@@ -34,12 +34,12 @@ services:
   secondary_02:
     build:
       context: ./build/
-    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME --auth
+    command: --bind_ip_all --logpath /data/logs/mongod.log --replSet $REPLICASET_NAME
     ports:
-      - "30003:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$ROOT_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$ROOT_PASSWD
+      - "127.0.0.1:30003:27017"
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=$ROOT_USER
+    #   - MONGO_INITDB_ROOT_PASSWORD=$ROOT_PASSWD
     env_file:
       - .env
     volumes:

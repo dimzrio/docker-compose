@@ -2,7 +2,7 @@
 
 sleep 10
 
-mongo -u $ROOT_USER -p $ROOT_PASSWD --host primary <<EOF
+mongo --host primary <<EOF
 rs.initiate(
   {
     _id : "$REPLICASET_NAME",

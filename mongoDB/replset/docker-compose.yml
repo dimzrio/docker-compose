@@ -6,7 +6,6 @@ services:
         context: .
       hostname: mongo_01
       extra_hosts:
-        - "localhost:$IP_MONGO_01"
         - "mongo_02:$IP_MONGO_02"
         - "mongo_03:$IP_MONGO_03"
       networks:

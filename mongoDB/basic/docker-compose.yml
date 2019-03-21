@@ -5,11 +5,12 @@ services:
         build:
           context: .
         ports:
-          - "27017:27017"
+          - "30001:27017"
         command: [--auth]
         volumes:
-          - ./data:/data/db
+          - ./db:/data/db
+          - ./script/:/docker-entrypoint-initdb.d/
         environment:
           - MONGO_INITDB_ROOT_USERNAME=admin
-          - MONGO_INITDB_ROOT_PASSWORD=detikc0m
+          - MONGO_INITDB_ROOT_PASSWORD=admin123
         restart: always
