@@ -1,2 +1,0 @@
-#mongo -u $ROOT_USER -p $ROOT_PASSWD --host $IP_MONGO_01 --eval "var REPLICASET_NAME = '$REPLICASET_NAME'; var IP_MONGO_01 = '$IP_MONGO_01'; var IP_MONGO_02 = '$IP_MONGO_02'; var IP_MONGO_03 = '$IP_MONGO_03'" /script/replica_set.js
-#mongo -u $ROOT_USER -p $ROOT_PASSWD --host $IP_MONGO_01 --eval "var ACCESS_DB = '$ACCESS_DB'; var CREATE_USER = '$CREATE_USER'; var CREATE_PASSWD = '$CREATE_PASSWD'" /script/create_user.js
