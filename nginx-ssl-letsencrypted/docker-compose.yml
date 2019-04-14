@@ -1,0 +1,22 @@
+version: '3.4'
+
+services: 
+  web:
+    image: nginx:1.14.2-alpine
+    restart: always
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d/
+      - ./dhparam/dhparam-2048.pem:/etc/nginx/ssl/dhparam-2048.pem
+      - ./certbot/conf/:/etc/nginx/ssl/
+      - ./certbot/data:/usr/share/nginx/html/letsencrypt
+    ports:
+      - 80:80
+      - 443:443
+  
+  certbot:
+     image: certbot/certbot:latest
+     command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email rio@dimasrio.com --agree-tos --no-eff-email -d centz.dimasrio.com
+     volumes:
+       - ./certbot/conf/:/etc/letsencrypt
+       - ./certbot/logs/:/var/log/letsencrypt
+       - ./certbot/data:/usr/share/nginx/html/letsencrypt
