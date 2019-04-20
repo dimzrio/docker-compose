@@ -5,6 +5,7 @@ services:
     image: nginx:1.14.2-alpine
     restart: always
     volumes:
+      - ./public_html:/public_html
       - ./conf.d:/etc/nginx/conf.d/
       - ./dhparam/dhparam-2048.pem:/etc/nginx/ssl/dhparam-2048.pem
       - ./certbot/conf/:/etc/nginx/ssl/
