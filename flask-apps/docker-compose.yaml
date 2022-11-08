@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+  apps:
+    build: .
+    restart: always
+    image: flask_apps:latest
+    ports:
+      - "8080:8080"
