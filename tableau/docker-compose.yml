@@ -9,6 +9,7 @@ services:
     container_name: tableau-server
     image: <tableau image from builder>
     restart: always
+    user: tableau
     ports:
       - "8080:8080"
       - "8850:8850"
