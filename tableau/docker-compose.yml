@@ -18,6 +18,6 @@ services:
       - TSM_REMOTE_UID=1010
       - TSM_REMOTE_USERNAME="tsm"
       - TSM_REMOTE_PASSWORD="<strong passwd>"
-      - LICENSE_KEY=TS4N-BE68-1B50-FB73-31E5
+      - LICENSE_KEY=<tableu key>
     volumes:
       - tableau_data:/var/opt/tableau
