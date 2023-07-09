@@ -19,6 +19,6 @@ services:
       - TSM_REMOTE_UID=1010
       - TSM_REMOTE_USERNAME="tsm"
       - TSM_REMOTE_PASSWORD="<strong passwd>"
-      - LICENSE_KEY=<tableu key>
+      - LICENSE_KEY="XXXXXXXXXXXX"
     volumes:
       - tableau_data:/var/opt/tableau
